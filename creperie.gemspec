@@ -13,5 +13,8 @@ Gem::Specification.new do |gem|
   gem.license       = 'MIT'
 
   gem.files         = Dir['lib/**/*.rb']
+  gem.test_files    = Dir["spec/**/*"]
   gem.require_paths = ['lib']
+
+  gem.add_development_dependency 'rspec', '~> 2.14.1'
 end
