@@ -12,9 +12,12 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/davidcelis/creperie'
   gem.license       = 'MIT'
 
+  gem.executables   = ['crepe']
   gem.files         = Dir['lib/**/*.rb']
   gem.test_files    = Dir["spec/**/*"]
   gem.require_paths = ['lib']
 
-  gem.add_development_dependency 'rspec', '~> 2.14.1'
+  gem.add_dependency 'thor', '~> 0.18'
+
+  gem.add_development_dependency 'rspec', '~> 2.14'
 end
