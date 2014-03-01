@@ -13,11 +13,12 @@ Gem::Specification.new do |gem|
   gem.license       = 'MIT'
 
   gem.executables   = ['crepe']
-  gem.files         = Dir['lib/**/*.rb']
-  gem.test_files    = Dir["spec/**/*"]
+  gem.files         = Dir['lib/**/{*,.*}']
+  gem.test_files    = Dir['spec/**/*']
   gem.require_paths = ['lib']
 
   gem.add_dependency 'thor', '~> 0.18'
+  gem.add_dependency 'crepe', '0.0.1.pre'
 
   gem.add_development_dependency 'rspec', '~> 2.14'
 end

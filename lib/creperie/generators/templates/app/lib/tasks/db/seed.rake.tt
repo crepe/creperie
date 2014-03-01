@@ -1,0 +1,10 @@
+module <%= app_name_const %>
+  class SeedLoader
+    def self.load_seed
+      seed_file = Crepe.root.join('db', 'seeds')
+      load seed_file if File.exists?(seed_file)
+    end
+  end
+end
+
+ActiveRecord::Tasks::DatabaseTasks.seed_loader = <%= app_name_const %>::SeedLoader
