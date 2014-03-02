@@ -15,7 +15,7 @@ $ gem install creperie
 ```bash
 $ crepe new --help
 Usage:
-  crepe creperie:generators:app APP_NAME
+  crepe new APP_NAME
 
 Options:
   -B, [--skip-bundle]  # Don't run bundle install
