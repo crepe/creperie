@@ -13,7 +13,22 @@ $ gem install creperie
 ### Creating an application
 
 ```bash
-$ crepe new [APP_NAME]
+$ crepe new --help
+Usage:
+  crepe creperie:generators:app APP_NAME
+
+Options:
+  -B, [--skip-bundle]  # Don't run bundle install
+  -G, [--skip-git]     # Don't create a git repository
+  -h, [--help]         # Print this usage information and exit
+
+Runtime options:
+  -f, [--force]    # Overwrite files that already exist
+  -p, [--pretend]  # Run but do not make any changes
+  -q, [--quiet]    # Suppress status output
+  -s, [--skip]     # Skip files that already exist
+
+Create a new Crepe application
 ```
 
 ## Contributing
