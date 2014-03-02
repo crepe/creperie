@@ -1,6 +1,5 @@
-require 'creperie/generators/app'
-
 require 'thor'
+require 'creperie/generators/app'
 
 module Creperie
   class CLI < Thor
@@ -16,6 +15,6 @@ module Creperie
       end
     end
 
-    register Generators::App, 'new', 'new [APP_NAME]', 'Create a new Crepe application'
+    register Generators::App, 'new', 'new [APP_NAME]', 'Create a new Crepe application.'
   end
 end

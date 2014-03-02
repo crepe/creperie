@@ -1,4 +1,4 @@
-# Creperie
+# Crêperie
 
 Pour yourself a new [Crêpe][crepe] app. This is a work in progress.
 
