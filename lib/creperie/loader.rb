@@ -6,7 +6,7 @@ module Creperie
       # If we find a Gemfile using the method below and it contains Crepe
       # as a dependency, we can safely assume we're in a Crepe application.
       def crepe_app?
-        gemfile =~ /gem (['"])crepe\1/
+        File.read(find_file(gemfile)) =~ /gem (['"])crepe\1/
       end
 
       def application
@@ -37,8 +37,8 @@ module Creperie
         original_dir = Dir.pwd
 
         loop do
-          # For convenience, return the contents of the file if we find it.
-          return File.read(filename) if File.file?(filename)
+          # Return the full path of the file if we find it.
+          return File.expand_path(filename) if File.file?(filename)
 
           # If we've reached the root of the filesystem without finding the
           # specified file, give up.
