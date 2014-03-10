@@ -2,4 +2,4 @@
 
 require 'creperie/cli'
 
-Creperie::CLI.start(ARGV)
+Creperie::CLI.run

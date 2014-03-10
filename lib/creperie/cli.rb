@@ -1,27 +1,17 @@
-require 'thor'
+require 'clamp'
+require 'creperie/commands'
 require 'creperie/loader'
-require 'creperie/generators/app'
 
 module Creperie
-  class CLI < Thor
-    desc :version, 'Display the Creperie version'
-    def version
-      require 'creperie/version'
-      say "Creperie #{Creperie::VERSION}"
-
-      begin
-        require 'crepe'
-        say "Crepe    #{Crepe::VERSION}"
-      rescue LoadError
-      end
+  class CLI < Commands::Base
+    def execute
+      request_help
     end
 
-    register Generators::App, 'new', 'new [APP_NAME]', 'Create a new Crepe application.'
+    subcommand 'new', 'Generate a new Crêpe application.', Commands::New
 
-    if Creperie::Loader.crepe_app?
-      require 'creperie/commands'
-
-      register Commands::Server, 'server', 'server', 'Start the Crêpe server (shortcut alias: "s")'
+    if Loader.crepe_app?
+      subcommand 'server', 'Start the Crêpe server.', Commands::Server
     end
   end
 end

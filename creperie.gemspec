@@ -5,10 +5,10 @@ require 'creperie/version'
 Gem::Specification.new do |gem|
   gem.name          = 'creperie'
   gem.version       = Creperie::VERSION
-  gem.authors       = ["David Celis"]
-  gem.email         = ["me@davidcel.is"]
-  gem.summary       = %q{Pour yourself a new Crêpe app.}
-  gem.description   = %q{Create and maintain your Crêpe applications.}
+  gem.authors       = ['David Celis']
+  gem.email         = ['me@davidcel.is']
+  gem.summary       = 'Pour a new Crêpe app.'
+  gem.description   = 'Create and maintain your Crêpe applications.'
   gem.homepage      = 'https://github.com/davidcelis/creperie'
   gem.license       = 'MIT'
 
@@ -17,6 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = Dir['spec/**/*']
   gem.require_paths = ['lib']
 
+  gem.add_dependency 'clamp', '~> 0.6'
   gem.add_dependency 'thor', '~> 0.18'
 
   gem.add_development_dependency 'rspec', '~> 2.14'
