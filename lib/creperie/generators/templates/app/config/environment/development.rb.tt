@@ -1,4 +1,4 @@
 # Settings specified here will take precedence over those in config/application.rb
-class <%= app_name_const %>::Application.configure do
+<%= app_name_const %>::Application.configure do
   config.log_level = :debug
 end
