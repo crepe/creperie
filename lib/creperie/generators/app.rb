@@ -1,5 +1,6 @@
 # encoding: utf-8
-require 'thor'
+require 'thor/group'
+require 'thor/actions'
 
 module Creperie
   module Generators
