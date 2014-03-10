@@ -14,6 +14,11 @@ module Creperie
         fild_file('./config/application.rb')
       end
 
+      def config_ru
+        return unless crepe_app?
+        find_file('config.ru')
+      end
+
       # Beginning with the current working directory, recursively search
       # up through the filesystem for a Gemfile.
       def gemfile

@@ -1,4 +1,5 @@
 require 'creperie/commands/base'
+require 'creperie/loader'
 
 module Creperie
   module Commands
@@ -23,7 +24,10 @@ module Creperie
         rackup_cmd += " -E #{env}"    if env
         rackup_cmd += " -P #{pid}"    if pid
         rackup_cmd += " -D"           if daemonize?
-        rackup_cmd += " #{config}"    if config
+
+        # By default, find the project's config.ru file and use it.
+        config = config || Loader.config_ru
+        rackup_cmd += " #{config}"
 
         Kernel.exec(rackup_cmd)
       end
