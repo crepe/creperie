@@ -11,7 +11,7 @@ module Creperie
     subcommand 'new', 'Generate a new Crêpe application.', Commands::New
 
     if Loader.crepe_app?
-      subcommand 'server', 'Start the Crêpe server.', Commands::Server
+      subcommand ['server', 's'], 'Start the Crêpe server.', Commands::Server
     end
   end
 end
