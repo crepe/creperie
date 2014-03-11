@@ -12,7 +12,7 @@ $ gem install creperie
 
 ## Usage
 
-```bash
+```
 $ crepe --help
 Usage:
     crepe [OPTIONS] SUBCOMMAND [ARG] ...
@@ -32,7 +32,9 @@ Options:
 
 ### Creating a new Crêpe application
 
-```bash
+This will generate a new Crêpe application with a default configuration and environment at a specified path. The provided path will also function as the application's name.
+
+```
 $ crepe new --help
 Usage:
     crepe new [OPTIONS] APP_PATH
@@ -53,7 +55,9 @@ Options:
 
 ### Running the Crêpe server
 
-```bash
+You can start the Crêpe server from the root directory of your project, or any subdirectory if you wish. This will by default boot a WEBrick server to feed requests to your Crêpe app, but if you bundle `puma`, `thin`, or some other web dispatcher with a Rack handler, that server will be used automatically. Alternatively, you can specify one with the `--server` option.
+
+```
 $ crepe server --help
 Usage:
     crepe server [OPTIONS]
@@ -66,6 +70,21 @@ Options:
     -D, --daemonize               Run Crêpe daemonized in the background
     -P, --pid PIDFILE             Store Crêpe's PID in the specified file
     -c, --config RACKUP_FILE      Specify a Rackup file other than config.ru
+    -v, --version                 Print the Crêperie version and exit.
+    -h, --help                    Print this help message and exit.
+```
+
+### Running the Crêpe console
+
+The Crêpe console will boot an IRB (or Pry, if bundled) session in the context of your application.
+
+```
+$ crepe c --help
+Usage:
+    crepe c [OPTIONS]
+
+Options:
+    -E, --env ENV                 Specify the Crêpe environment (default: "development")
     -v, --version                 Print the Crêperie version and exit.
     -h, --help                    Print this help message and exit.
 ```
