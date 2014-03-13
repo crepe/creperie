@@ -19,14 +19,10 @@ module Creperie
         find_file('config.ru')
       end
 
-      # Beginning with the current working directory, recursively search
-      # up through the filesystem for a Gemfile.
       def gemfile
         find_file('Gemfile')
       end
 
-      # Beginning with the current working directory, recursively search
-      # up through the filesystem for a Gemfile.lock.
       def gemfile_lock
         find_file('Gemfile.lock')
       end
