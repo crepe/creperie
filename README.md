@@ -77,9 +77,9 @@ Options:
 The Crêpe console will boot an IRB (or Pry, if bundled) session in the context of your application.
 
 ```
-$ crepe c --help
+$ crepe console --help
 Usage:
-    crepe c [OPTIONS]
+    crepe console [OPTIONS]
 
 Options:
     -E, --env ENV                 Specify the Crêpe environment (default: "development")
