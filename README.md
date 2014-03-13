@@ -89,11 +89,11 @@ Options:
 
 ## Contributing
 
-1. [Fork it](https://github.com/davidcelis/creperie/fork)
+1. [Fork it](https://github.com/crepe/creperie/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-[crepe]: https://github.com/stephencelis/crepe
+[crepe]: https://github.com/crepe/crepe
 [rails]: https://github.com/rails/rails
