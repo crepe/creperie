@@ -2,8 +2,6 @@
 
 Get your batter ready and pour out a beautiful new [Crêpe][crepe] app. When building a simpler API, a single class in your `config.ru` can be sufficient. However, when building a more ambitious API that connects to databases and exposes many endpoints, it's nice to have the sort of file structure that is given to you by a framework like [Rails][rails]. Crêperie gives you the means to generate a structured, ambitious Crêpe API while also providing some convenience on the command line when you're in an existing Crêpe app.
 
-This is a work in progress.
-
 ## Installation
 
 ```bash
