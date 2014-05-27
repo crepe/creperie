@@ -6,7 +6,8 @@ module Creperie
       # If we find a Gemfile using the method below and it contains Crepe
       # as a dependency, we can safely assume we're in a Crepe application.
       def crepe_app?
-        File.read(find_file(gemfile)) =~ /gem (['"])crepe\1/
+        return unless gemfile
+        File.read(gemfile) =~ /gem (['"])crepe\1/
       end
 
       def application
