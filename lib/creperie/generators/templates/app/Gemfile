@@ -10,7 +10,7 @@ gem 'app'
 gem 'creperie', github: 'davidcelis/creperie'
 
 # Use ActiveRecord to define models and PostgreSQL to store them.
-gem 'activerecord', '~> 4.0.0', require: 'active_record'
+gem 'activerecord', require: 'active_record'
 gem 'pg'
 
 # Use Jsonite to convert objects to JSON for presentation. Place
