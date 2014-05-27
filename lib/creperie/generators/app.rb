@@ -47,7 +47,7 @@ module Creperie
 
       # This will turn `app_name` into `AppName` to write constants.
       def app_name_const
-        app_name.gsub(/[a-z\d]*/) { $&.capitalize }.gsub('_', '')
+        app_name.gsub(/\W/, '_').gsub(/[a-z\d]*/) { $&.capitalize }.gsub('_', '')
       end
     end
   end
