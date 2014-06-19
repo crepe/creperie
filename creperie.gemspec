@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'clamp', '~> 0.6'
-  gem.add_dependency 'thor', '~> 0.18'
+  gem.add_dependency 'thor', '~> 0.19'
 
-  gem.add_development_dependency 'rspec', '~> 2.14'
+  gem.add_development_dependency 'rspec', '~> 3.0'
 end
