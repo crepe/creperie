@@ -10,11 +10,6 @@ module Creperie
         File.read(gemfile) =~ /gem (['"])crepe\1/
       end
 
-      def application
-        return unless crepe_app?
-        fild_file('./config/application.rb')
-      end
-
       def config_ru
         return unless crepe_app?
         find_file('config.ru')
@@ -22,10 +17,6 @@ module Creperie
 
       def gemfile
         find_file('Gemfile')
-      end
-
-      def gemfile_lock
-        find_file('Gemfile.lock')
       end
 
       private
