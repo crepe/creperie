@@ -39,11 +39,13 @@ module Creperie
 
           # If we've reached the root of the filesystem without finding the
           # specified file, give up.
-          Dir.chdir(original_dir) and return if Pathname.new(Dir.pwd).root?
+          return if Pathname.new(Dir.pwd).root?
 
           # Otherwise, move up a directory and search again.
           Dir.chdir('..')
         end
+      ensure
+        Dir.chdir(original_dir)
       end
     end
   end
