@@ -7,7 +7,7 @@ module Creperie
       parameter 'APP_PATH', 'The name and path of your Crêpe application'
 
       # Generator options
-      option ['-B', '--skip_bundle'], :flag, "Don't run bundle install."
+      option ['-B', '--skip-bundle'], :flag, "Don't run bundle install."
       option ['-G', '--skip-git'], :flag, "Don't create a git repository."
 
       # Runtime options
