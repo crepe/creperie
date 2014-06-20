@@ -25,8 +25,7 @@ module Creperie
         rackup += " -D"           if daemonize?
 
         # By default, find the project's config.ru file and use it.
-        config = config || Loader.config_ru
-        rackup += " #{config}"
+        rackup += " #{config || Loader.config_ru}"
 
         Kernel.exec(rackup)
       end
