@@ -21,5 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'thor', '~> 0.19'
 
   gem.add_development_dependency 'rspec', '~> 3.0'
-  gem.add_development_dependency 'aruba', '~> 0.5'
+  gem.add_development_dependency 'fakefs', '~> 0.5'
 end

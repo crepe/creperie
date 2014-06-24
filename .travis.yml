@@ -4,7 +4,6 @@ rvm:
   - 2.1.2
 script:
   - bundle exec rspec
-  - bundle exec cucumber
 notifications:
   email:
     recipients:

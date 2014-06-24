@@ -1,5 +1,8 @@
 # encoding: utf-8
 
+require 'bundler/setup'
+Bundler.require(:default)
+
 module Dummy
   class API < Crepe::API
     respond_to :json
