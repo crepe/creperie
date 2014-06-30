@@ -21,7 +21,8 @@ Parameters:
 
 Subcommands:
     new                           Generate a new Crêpe application.
-    server                        Start the Crêpe server.
+    console, c                    Start the Crêpe console.
+    server, s                     Start the Crêpe server.
 
 Options:
     -v, --version                 Print the Crêperie version and exit.
@@ -58,18 +59,23 @@ You can start the Crêpe server from the root directory of your project, or any 
 ```
 $ crepe server --help
 Usage:
-    crepe server [OPTIONS]
+    crepe s [OPTIONS]
 
 Options:
     -s, --server SERVER           Serve using the specified dispatcher
-    -p, --port PORT               Runs Crêpe on the specified port (default: 9292)
     -o, --host HOST               Binds Crêpe to the specified host (default: "0.0.0.0")
+    -p, --port PORT               Runs Crêpe on the specified port (default: 9292)
     -E, --env ENV                 Specify the Crêpe environment (default: "development")
-    -D, --daemonize               Run Crêpe daemonized in the background
     -P, --pid PIDFILE             Store Crêpe's PID in the specified file
     -c, --config RACKUP_FILE      Specify a Rackup file other than config.ru
+    -I, --include PATH            Add paths (colon-separated) to Crêpe's $LOAD_PATH
+    -r, --require LIBRARY         Require a library before Crêpe runs
+    -d, --debug                   Turn on debug output ($DEBUG = true)
+    -w, --warn                    Turn on warnings ($-w = true)
+    -D, --daemonize               Run Crêpe daemonized in the background
     -v, --version                 Print the Crêperie version and exit.
     -h, --help                    Print this help message and exit.
+
 ```
 
 ### Running the Crêpe console
