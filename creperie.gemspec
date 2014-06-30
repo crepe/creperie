@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'fakefs', '~> 0.5'
+  gem.add_development_dependency 'crepe', '~> 0.0.1.pre'
 end

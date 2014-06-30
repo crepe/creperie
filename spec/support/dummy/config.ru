@@ -1,7 +1,6 @@
 # encoding: utf-8
 
-require 'bundler/setup'
-Bundler.require(:default)
+require 'crepe'
 
 module Dummy
   class API < Crepe::API

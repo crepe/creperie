@@ -10,7 +10,7 @@ module Creperie
 
       def execute
         with_rack_aliased! do
-          load Loader.config_ru
+          Kernel.load Loader.config_ru
         end
 
         begin
@@ -22,11 +22,6 @@ module Creperie
       end
 
       private
-
-      def pry?
-        gemfile = Loader.gemfile
-        File.read(gemfile) =~ /gem (['"])pry/
-      end
 
       # The best way to load a Crêpe application's environment into an IRB shell
       # is to load the config.ru file, as that must load/require all code
