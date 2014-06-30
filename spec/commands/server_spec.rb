@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'creperie/cli'
 require 'creperie/commands/server'
+require 'rack'
 
 describe Creperie::Commands::Server do
   context 'outside of a Crêpe app' do
@@ -13,83 +14,75 @@ describe Creperie::Commands::Server do
     let(:server) { Creperie::Commands::Server.new(Dir.pwd, {}) }
 
     before do
-      @original_pwd = Dir.pwd
-      Dir.chdir(dummy)
+      allow(Creperie::Loader).to receive(:crepe_app?) { true }
     end
 
-    it 'runs rackup with no arguments' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -p 9292 -o 0.0.0.0 -E development #{dummy}/config.ru"
-      )
+    it 'calls out to Rack::Server with passed/default options' do
+      opts = double
+      expect(server).to       receive(:options).and_return(opts)
+      expect(Rack::Server).to receive(:start).with(opts)
 
       server.run([])
     end
 
-    it 'takes a --server (or -s) option' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -s puma -p 9292 -o 0.0.0.0 -E development #{dummy}/config.ru"
-      ).twice
+    context 'options' do
+      before { allow(Rack::Server).to receive(:start) }
 
-      server.run(['--server', 'puma'])
-      server.run(['-s',       'puma'])
-    end
+      it 'takes --server (or -s)' do
+        server.run(['--server', 'puma'])
+        expect(server.options[:server]).to eq('puma')
 
-    it 'takes a --host (or -o) option' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -p 9292 -o localhost -E development #{dummy}/config.ru"
-      ).twice
+        server.run(['-s',       'puma'])
+        expect(server.options[:server]).to eq('puma')
+      end
 
-      server.run(['--host', 'localhost'])
-      server.run(['-o',     'localhost'])
-    end
+      it 'takes a --host (or -o) option' do
+        server.run(['--host', 'localhost'])
+        expect(server.options[:Host]).to eq('localhost')
 
-    it 'takes a --port (or -p) option' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -p 3000 -o 0.0.0.0 -E development #{dummy}/config.ru"
-      ).twice
+        server.run(['-o',     'localhost'])
+        expect(server.options[:Host]).to eq('localhost')
+      end
 
-      server.run(['--port', '3000'])
-      server.run(['-p',     '3000'])
-    end
+      it 'takes a --port (or -p) option' do
+        server.run(['--port', '3000'])
+        expect(server.options[:Port]).to eq(3000)
 
-    it 'takes a --env (or -E) option' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -p 9292 -o 0.0.0.0 -E production #{dummy}/config.ru"
-      ).twice
+        server.run(['-p',     '3000'])
+        expect(server.options[:Port]).to eq(3000)
+      end
 
-      server.run(['--env', 'production'])
-      server.run(['-E',    'production'])
-    end
+      it 'takes a --env (or -E) option' do
+        server.run(['--env', 'production'])
+        expect(server.options[:environment]).to eq('production')
 
-    it 'takes a --pid (or -P) option' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -p 9292 -o 0.0.0.0 -E development -P tmp/crepe.pid #{dummy}/config.ru"
-      ).twice
+        server.run(['-E',    'production'])
+        expect(server.options[:environment]).to eq('production')
+      end
 
-      server.run(['--pid', 'tmp/crepe.pid'])
-      server.run(['-P',    'tmp/crepe.pid'])
-    end
+      it 'takes a --pid (or -P) option' do
+        server.run(['--pid', 'tmp/crepe.pid'])
+        expect(server.options[:pid]).to eq('tmp/crepe.pid')
 
-    it 'takes a --daemonize (or -D) option' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -p 9292 -o 0.0.0.0 -E development -D #{dummy}/config.ru"
-      ).twice
+        server.run(['-P',    'tmp/crepe.pid'])
+        expect(server.options[:pid]).to eq('tmp/crepe.pid')
+      end
 
-      server.run(['--daemonize'])
-      server.run(['-D'])
-    end
+      it 'takes a --daemonize (or -D) option' do
+        server.run(['--daemonize'])
+        expect(server.options[:daemonize]).to be_truthy
 
-    it 'takes a --config (or -c) options' do
-      expect(Kernel).to receive(:exec).with(
-        "bundle exec rackup -p 9292 -o 0.0.0.0 -E development crepe.ru"
-      ).twice
+        server.run(['-D'])
+        expect(server.options[:daemonize]).to be_truthy
+      end
 
-      server.run(['--config', 'crepe.ru'])
-      server.run(['-c',       'crepe.ru'])
-    end
+      it 'takes a --config (or -c) options' do
+        server.run(['--config', 'crepe.ru'])
+        expect(server.options[:config]).to eq('crepe.ru')
 
-    after do
-      Dir.chdir(@original_pwd)
+        server.run(['-c',       'crepe.ru'])
+        expect(server.options[:config]).to eq('crepe.ru')
+      end
     end
   end
 end
