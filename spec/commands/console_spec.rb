@@ -16,19 +16,18 @@ describe Creperie::Commands::Console do
     let(:console) { Creperie::Commands::Console.new(dummy, {}) }
 
     before do
-      allow(Creperie::Loader).to receive(:crepe_app?) { true }
       allow(Creperie::Loader).to receive(:config_ru) { "#{dummy}/config.ru" }
     end
 
     it 'loads config.ru and starts Pry' do
-      expect(Kernel).to receive(:load).with("#{dummy}/config.ru")
+      expect(Rack::Builder).to receive(:parse_file).with("#{dummy}/config.ru")
       expect(Pry).to receive(:start)
 
       console.run([])
     end
 
     it 'takes a --env (or -E) option' do
-      expect(Kernel).to receive(:load).with("#{dummy}/config.ru").twice
+      expect(Rack::Builder).to receive(:parse_file).with("#{dummy}/config.ru").twice
       expect(Pry).to receive(:start).twice
 
       console.run(['--env', 'production'])
