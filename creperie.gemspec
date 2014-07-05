@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'clamp', '~> 0.6'
   gem.add_dependency 'thor', '~> 0.19'
+  gem.add_dependency 'rack-console', '~> 1.2'
 
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'fakefs', '~> 0.5'

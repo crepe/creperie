@@ -2,8 +2,6 @@ require 'spec_helper'
 require 'creperie/cli'
 require 'creperie/commands/console'
 
-require 'pry'
-
 describe Creperie::Commands::Console do
   context 'outside of a Crêpe app' do
     it 'is not detected' do
@@ -13,27 +11,58 @@ describe Creperie::Commands::Console do
 
   context 'inside of a Crêpe app' do
     let(:dummy)   { File.expand_path('../../support/dummy', __FILE__) }
-    let(:console) { Creperie::Commands::Console.new(dummy, {}) }
+    let(:console) { Creperie::Commands::Console.new({}) }
 
     before do
-      allow(Creperie::Loader).to receive(:config_ru) { "#{dummy}/config.ru" }
+      @old_pwd = Dir.pwd
+      Dir.chdir dummy
     end
 
-    it 'loads config.ru and starts Pry' do
-      expect(Rack::Builder).to receive(:parse_file).with("#{dummy}/config.ru")
-      expect(Pry).to receive(:start)
+    it 'starts a Rack::Console' do
+      expect(Rack::Console).to receive(:start).with({
+        config: "#{dummy}/config.ru"
+      })
 
       console.run([])
     end
 
-    it 'takes a --env (or -E) option' do
-      expect(Rack::Builder).to receive(:parse_file).with("#{dummy}/config.ru").twice
-      expect(Pry).to receive(:start).twice
+    it 'proxies the --config option to Rack::Console' do
+      Dir.chdir @old_pwd
 
-      console.run(['--env', 'production'])
-      console.run(['-E',    'production'])
+      expect(Rack::Console).to receive(:start).with({
+        config: "#{dummy}/config.ru"
+      })
 
-      expect(ENV['CREPE_ENV']).to eq('production')
+      console.run(['--config', "#{dummy}/config.ru"])
     end
+
+    it 'proxies the --include option to Rack::Console' do
+      expect(Rack::Console).to receive(:start).with({
+        config: "#{dummy}/config.ru",
+        include: 'bin:vendor'
+      })
+
+      console.run(['--include', 'bin:vendor'])
+    end
+
+    it 'proxies the --require option to Rack::Console' do
+      expect(Rack::Console).to receive(:start).with({
+        config: "#{dummy}/config.ru",
+        require: 'json'
+      })
+
+      console.run(['--require', 'json'])
+    end
+
+    it 'passes the [ENVIRONMENT] argument to Rack::Console' do
+      expect(Rack::Console).to receive(:start).with({
+        config: "#{dummy}/config.ru",
+        environment: 'test'
+      })
+
+      console.run(['test'])
+    end
+
+    after { Dir.chdir @old_pwd }
   end
 end

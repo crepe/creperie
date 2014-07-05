@@ -1,21 +1,28 @@
 require 'creperie/commands/base'
 require 'creperie/loader'
+require 'rack/console'
 
 module Creperie
   module Commands
     class Console < Base
-      option ['-E', '--env'], 'ENV', 'Specify the Crêpe environment', default: 'development' do |env|
-        ENV['CREPE_ENV'] = env
-      end
+      option ['-c', '--config'],  'RACKUP_FILE', 'Specify a Rackup file other than config.ru'
+      option ['-I', '--include'], 'PATHS', "Add paths (colon-separated) to Crêpe's $LOAD_PATH", attribute_name: '_include'
+      option ['-r', '--require'], 'LIBRARY', 'Require a file or library before Crêpe runs', attribute_name: '_require'
+
+      parameter '[ENVIRONMENT]', 'Specify the Crêpe environment'
 
       def execute
-        Rack::Builder.parse_file(Loader.config_ru)
+        Rack::Console.start(options)
+      end
 
-        begin
-          require 'pry'
-          Pry.start
-        rescue LoadError
-          IRB.start
+      private
+
+      def options
+        {}.tap do |options|
+          options[:environment] = environment if environment
+          options[:require]     = _require    if _require
+          options[:include]     = _include    if _include
+          options[:config]      = config      || Loader.config_ru
         end
       end
     end
