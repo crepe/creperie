@@ -1,4 +1,5 @@
 module Creperie
+  # Try to version alongside Crêpe.
   class Version
     MAJOR = 0
     MINOR = 0

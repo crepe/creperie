@@ -3,12 +3,16 @@ require 'creperie/generators/app'
 
 module Creperie
   module Commands
+    # This command exists in addition to the App generator because of how Thor
+    # handles help invocation. `crepe help new` and `crepe new --help` would
+    # annoyingly generate different USAGE banners, so this Clamp command exists
+    # to proxy options and arguments to it instead.
     class New < Base
       parameter 'APP_PATH', 'The name and path of your Crêpe application'
 
       # Generator options
       option ['-B', '--skip-bundle'], :flag, "Don't run bundle install."
-      option ['-G', '--skip-git'], :flag, "Don't create a git repository."
+      option ['-G', '--skip-git'],    :flag, "Don't create a git repository."
 
       # Runtime options
       option ['-f', '--force'],   :flag, 'Overwrite files that already exist.'

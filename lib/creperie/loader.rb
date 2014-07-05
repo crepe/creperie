@@ -1,6 +1,8 @@
 require 'pathname'
 
 module Creperie
+  # This module is responsible for behavior related to loading a Crêpe
+  # application.
   module Loader
     class << self
       # If we find a Gemfile using the method below and it contains Crepe

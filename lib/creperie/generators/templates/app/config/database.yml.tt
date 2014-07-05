@@ -4,21 +4,21 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: <%= app_name %>_development
+  database: <%= name %>_development
   pool: 16
   username: postgres
   password:
 
 test:
   <<: *defaults
-  database: <%= app_name %>_test
+  database: <%= name %>_test
   pool: 16
   username: postgres
   password:
 
 production:
   <<: *defaults
-  database: <%= app_name %>_production
+  database: <%= name %>_production
   pool: 25
   username: postgres
   password:

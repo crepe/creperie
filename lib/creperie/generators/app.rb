@@ -4,35 +4,40 @@ require 'thor/actions'
 
 module Creperie
   module Generators
+    # Generate a new Crêpe application.
     class App < Thor::Group
       include Thor::Actions
       add_runtime_options!
       source_root File.expand_path('../templates/app', __FILE__)
 
-      class_option :skip_bundle, type: :boolean, desc: "Don't run bundle install",
-                                 aliases: '-B', default: false
+      class_option :skip_bundle, type: :boolean,
+                                 desc: "Don't run bundle install",
+                                 aliases: '-B',
+                                 default: false
 
-      class_option :skip_git, type: :boolean, desc: "Don't create a git repository",
-                              aliases: '-G', default: false
+      class_option :skip_git,    type: :boolean,
+                                 desc: "Don't create a git repository",
+                                 aliases: '-G',
+                                 default: false
 
-      argument :app_name
+      argument :name
 
       def copy_files
         say 'Pouring a new crêpe...'
 
-        directory '.', app_name
+        directory '.', name
       end
 
       def bundle_install
         return if options[:skip_bundle]
 
-        inside(app_name) { run 'bundle install' }
+        inside(name) { run 'bundle install' }
       end
 
       def git_init
         return if options[:skip_git]
 
-        inside(app_name) do
+        inside(name) do
           run 'git init', capture: true
           run 'git add .', capture: true
           run 'git commit -am "Initial commit"', capture: true
@@ -47,7 +52,7 @@ module Creperie
 
       # This will turn `app_name` into `AppName` to write constants.
       def app_name_const
-        app_name.gsub(/\W/, '_').gsub(/[a-z\d]*/) { $&.capitalize }.gsub('_', '')
+        name.gsub(/\W/, '_').gsub(/[a-z\d]*/) { $&.capitalize }.gsub('_', '')
       end
     end
   end

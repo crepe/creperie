@@ -4,10 +4,16 @@ require 'rack/console'
 
 module Creperie
   module Commands
+    # Uses Rack::Console to start a `rails console` analogue for Crêpe.
     class Console < Base
-      option ['-c', '--config'],  'RACKUP_FILE', 'Specify a Rackup file other than config.ru'
-      option ['-I', '--include'], 'PATHS', "Add paths (colon-separated) to Crêpe's $LOAD_PATH", attribute_name: '_include'
-      option ['-r', '--require'], 'LIBRARY', 'Require a file or library before Crêpe runs', attribute_name: '_require'
+      option ['-c', '--config'],  'RACKUP_FILE',
+                                  'Specify a Rackup file other than config.ru'
+      option ['-I', '--include'], 'PATHS',
+                                  'Add paths (colon-separated) to $LOAD_PATH',
+                                  attribute_name: '_include'
+      option ['-r', '--require'], 'LIBRARY',
+                                  'Require a file or library before Crêpe runs',
+                                  attribute_name: '_require'
 
       parameter '[ENVIRONMENT]', 'Specify the Crêpe environment'
 

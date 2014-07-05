@@ -3,6 +3,7 @@ require 'creperie/commands/new'
 require 'creperie/loader'
 
 module Creperie
+  # The command-line interface for Crêpe.
   class CLI < Commands::Base
     def execute
       request_help
