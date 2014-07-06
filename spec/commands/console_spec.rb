@@ -20,7 +20,8 @@ describe Creperie::Commands::Console do
 
     it 'starts a Rack::Console' do
       expect(Rack::Console).to receive(:start).with({
-        config: "#{dummy}/config.ru"
+        environment: 'development',
+        config:      "#{dummy}/config.ru"
       })
 
       console.run([])
@@ -30,6 +31,7 @@ describe Creperie::Commands::Console do
       Dir.chdir @old_pwd
 
       expect(Rack::Console).to receive(:start).with({
+        environment: 'development',
         config: "#{dummy}/config.ru"
       })
 
@@ -38,6 +40,7 @@ describe Creperie::Commands::Console do
 
     it 'proxies the --include option to Rack::Console' do
       expect(Rack::Console).to receive(:start).with({
+        environment: 'development',
         config: "#{dummy}/config.ru",
         include: 'bin:vendor'
       })
@@ -47,6 +50,7 @@ describe Creperie::Commands::Console do
 
     it 'proxies the --require option to Rack::Console' do
       expect(Rack::Console).to receive(:start).with({
+        environment: 'development',
         config: "#{dummy}/config.ru",
         require: 'json'
       })

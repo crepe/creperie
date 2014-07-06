@@ -15,9 +15,16 @@ module Creperie
                                   'Require a file or library before Crêpe runs',
                                   attribute_name: '_require'
 
-      parameter '[ENVIRONMENT]', 'Specify the Crêpe environment'
+      parameter '[ENVIRONMENT]', 'Specify the Crêpe environment',
+                                 default: 'development'
 
       def execute
+        require 'crepe/version'
+
+        loading = "Loading #{environment} environment"
+        version = "(Crêpe #{Crepe::VERSION})"
+        ENV['RACK_CONSOLE_PREAMBLE'] = "#{loading} #{version}"
+
         Rack::Console.start(options)
       end
 
@@ -25,7 +32,7 @@ module Creperie
 
       def options
         {}.tap do |options|
-          options[:environment] = environment if environment
+          options[:environment] = environment
           options[:require]     = _require    if _require
           options[:include]     = _include    if _include
           options[:config]      = config      || Loader.config_ru
