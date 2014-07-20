@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 # Bundle from GitHub, as only a prerelease is currently available.
 gem 'crepe', github: 'crepe/crepe'
 gem 'rake'
-gem 'app'
 
 # Crêperie provides CLI convenience for your crepe app as well.
 gem 'creperie', github: 'crepe/creperie'
