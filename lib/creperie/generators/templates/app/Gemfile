@@ -16,7 +16,7 @@ gem 'pg'
 # presenters in the app/presenters/ directory.
 #
 # More info: https://github.com/barrelage/jsonite
-gem 'jsonite', github: 'barrelage/jsonite'
+# gem 'jsonite', github: 'barrelage/jsonite'
 
 # Use puma as the web server.
 # gem 'puma'

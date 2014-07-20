@@ -9,19 +9,5 @@ $LOAD_PATH.unshift Crepe.root unless $LOAD_PATH.include?(Crepe.root)
 # Load initializers.
 Dir['config/initializers/*'].each { |f| require f }
 
-# Your main Crêpe API. Define root-level routes here, or mount your sub-apis
-# that you've defined in the app/apis/ directory.
-module <%= app_name_const %>
-  class API < BaseAPI
-    respond_to :json
-
-    # curl 0.0.0.0:9292/
-    # => {"hello":"world"}
-    get do
-      { hello: 'world' }
-    end
-
-    # Mount your other APIs here
-    # mount UsersAPI => :users
-  end
-end
+# Edit config/routes.rb to define routes or mount your other APIs.
+require Crepe.root.join('config', 'routes')
