@@ -9,9 +9,11 @@ gem 'app'
 # Crêperie provides CLI convenience for your crepe app as well.
 gem 'creperie', github: 'crepe/creperie'
 
-# Use ActiveRecord to define models and PostgreSQL to store them.
+# Use ActiveRecord to define models and SQLite 3 to store them.
 gem 'activerecord', require: 'active_record'
-gem 'pg'
+gem 'sqlite3'
+# Use PostgreSQL instead.
+# gem 'pg'
 
 # Use Jsonite to convert objects to JSON for presentation. Place
 # presenters in the app/presenters/ directory.
