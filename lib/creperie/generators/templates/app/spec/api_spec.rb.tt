@@ -1,0 +1,10 @@
+require 'spec_helper'
+
+describe <%= app_name_const %>::API do
+  describe 'GET /' do
+    before  { get '/' }
+    subject { last_response.body }
+
+    it { is_expected.to eq('{"hello":"world"}') }
+  end
+end

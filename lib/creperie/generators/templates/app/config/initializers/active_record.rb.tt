@@ -1,3 +1,5 @@
+require 'yaml'
+
 # Establish a connection to the database.
 database_yml = File.read(Crepe.root.join('config', 'database.yml'))
 database = YAML.load(ERB.new(database_yml).result)[Crepe.env]
