@@ -15,11 +15,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'rack'
-
-# Load the entire Crêpe API by parsing the config.ru file.
-Rack::Builder.parse_file File.expand_path('../../config.ru', __FILE__)
-
+require File.expand_path('../../config/application', __FILE__)
 require 'rack/test'
 
 RSpec.configure do |config|
