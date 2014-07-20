@@ -1,13 +1,10 @@
 require File.expand_path('../boot', __FILE__)
 require 'crepe'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# Require the gems listed in Gemfile, including any gems you've limited to
+# :test, :development, or :production.
 Bundler.require(:default, Crepe.env)
 $LOAD_PATH.unshift Crepe.root unless $LOAD_PATH.include?(Crepe.root)
-
-# Load environment-specific configuration.
-require Crepe.root.join('config', 'environment', Crepe.env)
 
 # Load initializers.
 Dir['config/initializers/*'].each { |f| require f }

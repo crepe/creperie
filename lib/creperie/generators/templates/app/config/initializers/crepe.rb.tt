@@ -1,1 +1,0 @@
-Crepe.logger.level = <%= app_name_const%>::Application.log_level

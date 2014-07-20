@@ -4,5 +4,5 @@ require 'active_support/dependencies'
 relative_load_paths = %w[app/apis app/helpers app/models app/presenters lib]
 ActiveSupport::Dependencies.autoload_paths += relative_load_paths
 
-# Set the default Time Zone.
-Time.zone_default = <%= app_name_const %>::Application.time_zone
+# Set the default Time Zone to UTC.
+Time.zone_default = 'UTC'
