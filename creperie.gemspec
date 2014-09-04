@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'clamp', '~> 0.6'
   s.add_dependency 'thor', '~> 0.19'
   s.add_dependency 'rack-console', '~> 1.3'
+  s.add_dependency 'listen', '~> 2.7'
 
   s.add_development_dependency 'rspec', '~> 3.0'
   s.add_development_dependency 'fakefs', '~> 0.5'

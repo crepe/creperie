@@ -19,7 +19,9 @@ describe Creperie::Commands::Server do
 
     it 'calls out to Rack::Server with passed/default options' do
       opts = double
-      expect(server).to       receive(:options).and_return(opts)
+      allow(opts).to receive(:[])
+
+      allow(server).to        receive(:options).and_return(opts)
       expect(Rack::Server).to receive(:start).with(opts)
 
       server.run([])
