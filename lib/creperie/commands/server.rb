@@ -1,5 +1,6 @@
 require 'creperie/commands/base'
 require 'creperie/loader'
+require 'listen'
 
 module Creperie
   module Commands
@@ -38,6 +39,8 @@ module Creperie
         require 'bundler/setup'
         require 'rack'
 
+        watch_for_changes! if options[:environment] == 'development'
+
         Rack::Server.start(options)
       end
 
@@ -57,6 +60,15 @@ module Creperie
           opts[:debug]       = debug?
           opts[:warn]        = warn?
         end
+      end
+
+      def watch_for_changes!
+        listener = Listen.to Dir.pwd, only: /\.(rb|ru|yml)$/ do
+          puts 'Source code changes detected. Reloading...'
+          Kernel.exec $0, *ARGV
+        end
+
+        listener.start
       end
     end
   end
