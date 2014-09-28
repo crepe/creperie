@@ -27,6 +27,17 @@ describe Creperie::Commands::Server do
       server.run([])
     end
 
+    it 'watches files for changes' do
+      listener = double
+      expect(listener).to receive(:start)
+
+      expect(Rack::Server).to receive(:start)
+      expect(Listen).to receive(:to).with(Dir.pwd, only: /\.(rb|ru|yml)$/).
+                                     and_return(listener)
+
+      server.run([])
+    end
+
     context 'options' do
       before { allow(Rack::Server).to receive(:start) }
       let(:options) { server.send(:options) }
