@@ -1,7 +1,7 @@
 require 'pathname'
 
 module Creperie
-  # This module is responsible for behavior related to loading a Crêpe
+  # This module is responsible for behavior related to loading a Crepe
   # application.
   module Loader
     class << self

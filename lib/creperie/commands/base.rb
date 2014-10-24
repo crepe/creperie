@@ -5,7 +5,7 @@ module Creperie
     # A Base command that defines common options for other CLI commands.
     class Base < Clamp::Command
       option ['-v', '--version'], :flag,
-                                  'Print the Crêperie version and exit.' do
+                                  'Print the Creperie version and exit.' do
         require 'creperie/version'
         puts Creperie::VERSION
         exit 0

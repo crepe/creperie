@@ -1,4 +1,4 @@
-# This is the class that all other Crêpe APIs should inherit from. It defines
+# This is the class that all other Crepe APIs should inherit from. It defines
 # a shared configuration and helper methods that should be used across your
 # entire Crepe application.
 

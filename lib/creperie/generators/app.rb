@@ -4,7 +4,7 @@ require 'thor/actions'
 
 module Creperie
   module Generators
-    # Generate a new Crêpe application.
+    # Generate a new Crepe application.
     class App < Thor::Group
       include Thor::Actions
       add_runtime_options!
@@ -23,7 +23,7 @@ module Creperie
       argument :name
 
       def copy_files
-        say 'Pouring a new crêpe...'
+        say 'Pouring a new Crepe...'
 
         directory '.', name
       end
@@ -45,7 +45,7 @@ module Creperie
       end
 
       def finish
-        say 'Your crêpe is ready.', :green
+        say 'Your Crepe is ready.', :green
       end
 
       protected

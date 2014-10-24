@@ -17,5 +17,5 @@ module Dummy
   end
 end
 
-# Your crêpe is ready.
+# Your Crepe is ready.
 run Dummy::API

@@ -3,13 +3,13 @@ require 'creperie/cli'
 require 'creperie/commands/console'
 
 describe Creperie::Commands::Console do
-  context 'outside of a Crêpe app' do
+  context 'outside of a Crepe app' do
     it 'is not detected' do
       expect(Creperie::CLI.find_subcommand('console')).to be_nil
     end
   end
 
-  context 'inside of a Crêpe app' do
+  context 'inside of a Crepe app' do
     let(:dummy)   { File.expand_path('../../support/dummy', __FILE__) }
     let(:console) { Creperie::Commands::Console.new({}) }
 

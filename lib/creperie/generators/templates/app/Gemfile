@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'crepe', github: 'crepe/crepe'
 gem 'rake'
 
-# Crêperie provides CLI convenience for your crepe app as well.
+# Creperie provides CLI convenience for your crepe app as well.
 gem 'creperie', github: 'crepe/creperie'
 
 # Use ActiveRecord to define models and PostgreSQL to store them.

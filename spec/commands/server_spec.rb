@@ -4,13 +4,13 @@ require 'creperie/commands/server'
 require 'rack'
 
 describe Creperie::Commands::Server do
-  context 'outside of a Crêpe app' do
+  context 'outside of a Crepe app' do
     it 'is not detected' do
       expect(Creperie::CLI.find_subcommand('server')).to be_nil
     end
   end
 
-  context 'inside of a Crêpe app' do
+  context 'inside of a Crepe app' do
     let(:server) { Creperie::Commands::Server.new(Dir.pwd, {}) }
 
     before do

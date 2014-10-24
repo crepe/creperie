@@ -8,7 +8,7 @@ module Creperie
     # annoyingly generate different USAGE banners, so this Clamp command exists
     # to proxy options and arguments to it instead.
     class New < Base
-      parameter 'APP_PATH', 'The name and path of your Crêpe application'
+      parameter 'APP_PATH', 'The name and path of your Crepe application'
 
       # Generator options
       option ['-B', '--skip-bundle'], :flag, "Don't run bundle install."

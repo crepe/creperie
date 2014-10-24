@@ -4,7 +4,7 @@ require 'rack/console'
 
 module Creperie
   module Commands
-    # Uses Rack::Console to start a `rails console` analogue for Crêpe.
+    # Uses Rack::Console to start a `rails console` analogue for Crepe.
     class Console < Base
       option ['-c', '--config'],  'RACKUP_FILE',
                                   'Specify a Rackup file other than config.ru'
@@ -12,17 +12,17 @@ module Creperie
                                   'Add paths (colon-separated) to $LOAD_PATH',
                                   attribute_name: '_include'
       option ['-r', '--require'], 'LIBRARY',
-                                  'Require a file or library before Crêpe runs',
+                                  'Require a file or library before Crepe runs',
                                   attribute_name: '_require'
 
-      parameter '[ENVIRONMENT]', 'Specify the Crêpe environment',
+      parameter '[ENVIRONMENT]', 'Specify the Crepe environment',
                                  default: 'development'
 
       def execute
         require 'crepe/version'
 
         loading = "Loading #{environment} environment"
-        version = "(Crêpe #{Crepe::VERSION})"
+        version = "(Crepe #{Crepe::VERSION})"
         ENV['RACK_CONSOLE_PREAMBLE'] = "#{loading} #{version}"
 
         Rack::Console.start(options)

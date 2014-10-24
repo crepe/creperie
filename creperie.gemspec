@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.version       = Creperie::VERSION
   s.authors       = ['David Celis']
   s.email         = ['me@davidcel.is']
-  s.summary       = 'Pour a new Crêpe app.'
-  s.description   = 'Create and maintain your Crêpe applications.'
+  s.summary       = 'Pour a new Crepe app.'
+  s.description   = 'Create and maintain your Crepe applications.'
   s.homepage      = 'https://github.com/davidcelis/creperie'
   s.license       = 'MIT'
 
