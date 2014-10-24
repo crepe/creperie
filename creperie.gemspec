@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = 'yard'
 
+  s.required_ruby_version = '>= 2.1.0'
+
   s.add_dependency 'crepe', '~> 0.0.1.pre'
   s.add_dependency 'clamp', '~> 0.6'
   s.add_dependency 'thor', '~> 0.19'
