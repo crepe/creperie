@@ -23,7 +23,7 @@ module Creperie
 
         loading = "Loading #{environment} environment"
         version = "(Crepe #{Crepe::VERSION})"
-        ENV['RACK_CONSOLE_PREAMBLE'] = "#{loading} #{version}"
+        ENV['RACK_CONSOLE_INTRO'] = "#{loading} #{version}"
 
         Rack::Console.start(options)
       end
