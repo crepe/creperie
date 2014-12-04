@@ -1,24 +1,16 @@
 defaults: &defaults
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
 
 development:
   <<: *defaults
-  database: <%= name %>_development
-  pool: 16
-  username: postgres
-  password:
+  database: db/development.sqlite3
 
 test:
   <<: *defaults
-  database: <%= name %>_test
-  pool: 16
-  username: postgres
-  password:
+  database: db/test.sqlite3
 
 production:
   <<: *defaults
-  database: <%= name %>_production
-  pool: 25
-  username: postgres
-  password:
+  database: db/production.sqlite3

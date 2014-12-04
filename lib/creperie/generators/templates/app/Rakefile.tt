@@ -6,3 +6,8 @@ Dir['lib/tasks/**/*.rake'].each { |task| load task }
 
 # Load ActiveRecord Rake tasks
 load 'active_record/railties/databases.rake'
+include ActiveRecord::Tasks
+DatabaseTasks.db_dir = 'db'
+DatabaseTasks.migrations_paths = %w[db/migrate]
+DatabaseTasks.root = Crepe.root
+DatabaseTasks.env = Crepe.env
