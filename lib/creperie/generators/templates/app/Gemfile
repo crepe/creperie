@@ -15,8 +15,8 @@ gem 'pg'
 # Use Jsonite to convert objects to JSON for presentation. Place
 # presenters in the app/presenters/ directory.
 #
-# More info: https://github.com/barrelage/jsonite
-# gem 'jsonite', github: 'barrelage/jsonite'
+# More info: https://github.com/crepe/jsonite
+# gem 'jsonite', github: 'crepe/jsonite'
 
 # Use puma as the web server.
 # gem 'puma'
