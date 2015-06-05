@@ -25,5 +25,21 @@ module Crepe
         instance_eval(&block)
       end
     end
+
+    def initialize!
+      load_environment!
+      run_initializers!
+    end
+
+    private
+
+    def load_environment!
+      require Crepe.root.join('config', 'environments', Crepe.env)
+    end
+
+    def run_initializers!
+      initializers = Crepe.root.join('config', 'initializers', '*.rb')
+      Dir[initializers].each { |initializer| require initializer }
+    end
   end
 end

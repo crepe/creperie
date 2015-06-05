@@ -23,4 +23,23 @@ describe Crepe::Application do
   it 'has a configuration' do
     expect(Crepe.application.config).to be_a(Crepe::Application::Configuration)
   end
+
+  describe 'initialize!' do
+    it 'loads an environment file based on Crepe.env' do
+      environment_file = Crepe.root.join('config', 'environments', Crepe.env)
+      expect(Crepe.application).to receive(:require).with(environment_file)
+
+      Crepe.application.initialize!
+    end
+
+    it 'loads initializers' do
+      initializers = Crepe.root.join('config', 'initializers', '*.rb')
+
+      expect(Dir).to receive(:[]).with(initializers).and_return(['file.rb'])
+      allow(Crepe.application).to  receive(:require)
+      expect(Crepe.application).to receive(:require).with('file.rb')
+
+      Crepe.application.initialize!
+    end
+  end
 end
