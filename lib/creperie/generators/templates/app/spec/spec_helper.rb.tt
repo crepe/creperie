@@ -22,7 +22,7 @@ RSpec.configure do |config|
   config.include Rack::Test::Methods
 
   def app
-    <%= app_name_const %>::API
+    Crepe.application
   end
 
   # The settings below are suggested to provide a good initial experience

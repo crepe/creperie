@@ -1,10 +1,6 @@
 require 'crepe/application/configuration'
 
 module Crepe
-  class << self
-    attr_accessor :application
-  end
-
   # Provides a singleton-esque accessor to a Crepe application and houses
   # configuration for an application.
   class Application
@@ -16,6 +12,8 @@ module Crepe
       # Support multiple Crepe applications like Rails, but by default set
       # Crepe.application to be the first application initialized.
       Crepe.application ||= self
+
+      @app = Class.new(Crepe::API)
     end
 
     def configure(&block)
@@ -29,6 +27,20 @@ module Crepe
     def initialize!
       load_environment!
       run_initializers!
+      load_routes!
+    end
+
+    def call(env)
+      @app.call(env)
+    end
+
+    def routes(&block)
+      @app.instance_eval(&block)
+    end
+
+    def load_seed
+      seed_file = Crepe.root.join('db', 'seeds')
+      load seed_file if File.exists?(seed_file)
     end
 
     private
@@ -40,6 +52,20 @@ module Crepe
     def run_initializers!
       initializers = Crepe.root.join('config', 'initializers', '*.rb')
       Dir[initializers].each { |initializer| require initializer }
+    end
+
+    def load_routes!
+      require Crepe.root.join('config', 'routes')
+    end
+  end
+
+  class << self
+    def application
+      @application ||= Crepe::Application.new
+    end
+
+    def application=(app)
+      @application = app
     end
   end
 end

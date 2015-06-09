@@ -1,10 +1,9 @@
 require 'spec_helper'
 
-describe <%= app_name_const %>::API do
+describe 'routing' do
   describe 'GET /' do
-    before  { get '/' }
-    subject { last_response.body }
-
-    it { is_expected.to eq('{"hello":"world"}') }
+    it 'responds with hello world' do
+      expect(last_response.body).to eq('{"hello":"world"}')
+    end
   end
 end

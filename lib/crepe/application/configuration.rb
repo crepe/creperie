@@ -8,12 +8,12 @@ module Crepe
     # Crepe.application.configure do
     #   config.launched_at = Time.now
     #
-    #   config.mail.host = 'smtp.maildrill.com'
+    #   config.mail = { host: 'smtp.maildrill.com', port: 25 }
     #
     #   config.uptime = -> { Time.now - Crepe.application.config.launched_at }
     # end
     #
-    # Crepe.application.config.mail.host
+    # Crepe.application.config.mail[:host]
     #   #=> 'smtp.maildrill.com'
     # Crepe.application.config.launched_at?
     #   #=> true
