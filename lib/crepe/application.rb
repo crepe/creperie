@@ -8,12 +8,7 @@ module Crepe
 
     def initialize
       @config = Configuration.new
-
-      # Support multiple Crepe applications like Rails, but by default set
-      # Crepe.application to be the first application initialized.
-      Crepe.application ||= self
-
-      @app = Class.new(Crepe::API)
+      @app    = Class.new(Crepe::API)
     end
 
     def configure(&block)
