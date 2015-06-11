@@ -25,9 +25,11 @@ describe Crepe::Application do
   end
 
   describe 'initialize!' do
-    it 'loads an environment file based on Crepe.env' do
+    it 'loads routes and an environment file based on Crepe.env' do
       environment_file = Crepe.root.join('config', 'environments', Crepe.env)
+      routes_file      = Crepe.root.join('config', 'routes')
       expect(Crepe.application).to receive(:require).with(environment_file)
+      expect(Crepe.application).to receive(:require).with(routes_file)
 
       Crepe.application.initialize!
     end
