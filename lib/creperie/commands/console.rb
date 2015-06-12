@@ -25,6 +25,8 @@ module Creperie
         version = "(Crepe #{Crepe::VERSION})"
         ENV['RACK_CONSOLE_INTRO'] = "#{loading} #{version}"
 
+        print "\033]0;crepe\007"
+
         Rack::Console.start(options)
       end
 

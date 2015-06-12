@@ -41,6 +41,8 @@ module Creperie
 
         watch_for_changes! if options[:environment] == 'development'
 
+        print "\033]0;crepe\007"
+
         Rack::Server.start(options)
       end
 
