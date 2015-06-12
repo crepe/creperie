@@ -43,6 +43,7 @@ module Creperie
 
         print "\033]0;crepe\007"
 
+        ENV['RACK_ENV'] = options[:environment]
         Rack::Server.start(options)
       end
 

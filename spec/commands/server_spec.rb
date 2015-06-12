@@ -72,6 +72,8 @@ describe Creperie::Commands::Server do
 
         server.run(['-E',    'production'])
         expect(options[:environment]).to eq('production')
+
+        expect(ENV['RACK_ENV']).to eq('production')
       end
 
       it 'takes a --pid (or -P) option' do
