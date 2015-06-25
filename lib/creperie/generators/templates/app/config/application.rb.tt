@@ -11,9 +11,11 @@ Bundler.require(:default, Crepe.env)
 # called for you dynamically when accessed.
 #
 # Settings in config/environments/* take precedence over those specified here.
-Crepe.application.configure do
-  # config.launched_at = Time.now
-  # config.uptime      = -> { Time.now - Crepe.application.config.launched_at }
+module <%= app_name_const %>
+  class API < Crepe::Application
+    # config.launched_at = Time.now
+    # config.uptime = -> { Time.now - Crepe.application.config.launched_at }
+  end
 end
 
 # Load initializers.
