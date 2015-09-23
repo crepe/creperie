@@ -15,8 +15,7 @@ module Creperie
                                   'Require a file or library before Crepe runs',
                                   attribute_name: '_require'
 
-      parameter '[ENVIRONMENT]', 'Specify the Crepe environment',
-                                 default: 'development'
+      parameter '[ENVIRONMENT]', 'Specify the Crepe environment'
 
       def execute
         require 'crepe/version'
@@ -31,6 +30,10 @@ module Creperie
       end
 
       private
+
+      def default_environment
+        ENV['CREPE_ENV'] || ENV['RACK_ENV'] || 'development'
+      end
 
       def options
         {}.tap do |options|

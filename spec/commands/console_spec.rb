@@ -3,6 +3,15 @@ require 'creperie/cli'
 require 'creperie/commands/console'
 
 describe Creperie::Commands::Console do
+  before do
+    @old_rack_env  = ENV['RACK_ENV']
+    @old_crepe_env = ENV['CREPE_ENV']
+  end
+  after do
+    ENV['RACK_ENV']  = @old_rack_env
+    ENV['CREPE_ENV'] = @old_crepe_env
+  end
+
   context 'outside of a Crepe app' do
     it 'is not detected' do
       expect(Creperie::CLI.find_subcommand('console')).to be_nil
@@ -65,6 +74,30 @@ describe Creperie::Commands::Console do
       })
 
       console.run(['test'])
+    end
+
+    it 'defers the [ENVIRONMENT] argument to $RACK_ENV' do
+      ENV['CREPE_ENV'] = nil
+      ENV['RACK_ENV'] = 'test'
+
+      expect(Rack::Console).to receive(:start).with({
+        config: "#{dummy}/config.ru",
+        environment: 'test'
+      })
+
+      console.run([])
+    end
+
+    it 'defers the [ENVIRONMENT] argument to $CREPE_ENV' do
+      ENV['CREPE_ENV'] = 'production'
+      ENV['RACK_ENV'] = 'test'
+
+      expect(Rack::Console).to receive(:start).with({
+        config: "#{dummy}/config.ru",
+        environment: 'production'
+      })
+
+      console.run([])
     end
 
     after { Dir.chdir @old_pwd }

@@ -15,8 +15,7 @@ module Creperie
                                     'Runs Crepe on the specified port',
                                     default: 9292
       option ['-E', '--env'],       'ENV',
-                                    'Specify the Crepe environment',
-                                    default: 'development'
+                                    'Specify the Crepe environment'
       option ['-P', '--pid'],       'PIDFILE',
                                     "Store Crepe's PID in the specified file"
       option ['-c', '--config'],    'RACKUP_FILE',
@@ -63,6 +62,10 @@ module Creperie
           opts[:debug]       = debug?
           opts[:warn]        = warn?
         end
+      end
+
+      def default_env
+        ENV['CREPE_ENV'] || ENV['RACK_ENV'] || 'development'
       end
 
       def watch_for_changes!

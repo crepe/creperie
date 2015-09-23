@@ -4,6 +4,15 @@ require 'creperie/commands/server'
 require 'rack'
 
 describe Creperie::Commands::Server do
+  before do
+    @old_rack_env  = ENV['RACK_ENV']
+    @old_crepe_env = ENV['CREPE_ENV']
+  end
+  after do
+    ENV['RACK_ENV']  = @old_rack_env
+    ENV['CREPE_ENV'] = @old_crepe_env
+  end
+
   context 'outside of a Crepe app' do
     it 'is not detected' do
       expect(Creperie::CLI.find_subcommand('server')).to be_nil
@@ -74,6 +83,22 @@ describe Creperie::Commands::Server do
         expect(options[:environment]).to eq('production')
 
         expect(ENV['RACK_ENV']).to eq('production')
+      end
+
+      it 'defers environment to $RACK_ENV' do
+        ENV['CREPE_ENV'] = nil
+        ENV['RACK_ENV'] = 'staging'
+
+        server.run([])
+        expect(options[:environment]).to eq('staging')
+      end
+
+      it 'defers environment to $CREPE_ENV' do
+        ENV['CREPE_ENV'] = 'production'
+        ENV['RACK_ENV'] = 'staging'
+
+        server.run([])
+        expect(options[:environment]).to eq('production')
       end
 
       it 'takes a --pid (or -P) option' do
