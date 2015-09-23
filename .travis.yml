@@ -9,3 +9,4 @@ notifications:
       - me@davidcel.is
     on_success: change
     on_failure: always
+sudo: false
