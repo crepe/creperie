@@ -5,7 +5,7 @@ Get your batter ready and pour out a beautiful new [Crepe][crepe] app. When buil
 ## Installation
 
 ```bash
-$ gem install creperie
+$ gem install creperie --pre
 ```
 
 ## Usage
