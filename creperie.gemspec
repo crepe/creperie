@@ -22,14 +22,14 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.1.0'
 
   s.add_dependency 'crepe', '~> 0.0.1.pre'
-  s.add_dependency 'clamp', '~> 0.6'
-  s.add_dependency 'thor', '~> 0.19'
-  s.add_dependency 'rack-console', '~> 1.3'
-  s.add_dependency 'listen', '~> 2.7'
+  s.add_dependency 'clamp', '~> 1.0.x'
+  s.add_dependency 'thor', '~> 0.19.x'
+  s.add_dependency 'rack-console', '~> 1.3.x'
+  s.add_dependency 'listen', '~> 3.0.x'
 
-  s.add_development_dependency 'rspec', '~> 3.1'
-  s.add_development_dependency 'fakefs', '~> 0.5'
-  s.add_development_dependency 'cane', '~> 2.6'
-  s.add_development_dependency 'rake', '~> 10.3'
-  s.add_development_dependency 'yard', '~> 0.8'
+  s.add_development_dependency 'rspec', '~> 3.3.x'
+  s.add_development_dependency 'fakefs', '~> 0.6.x'
+  s.add_development_dependency 'cane', '~> 2.6.x'
+  s.add_development_dependency 'rake', '~> 10.4.x'
+  s.add_development_dependency 'yard', '~> 0.8.x'
 end
