@@ -23,7 +23,7 @@ module Crepe
         if block.arity == 1
           yield config
         else
-          instance_eval(&block)
+          config.instance_eval(&block)
         end
       end
 

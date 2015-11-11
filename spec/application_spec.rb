@@ -22,6 +22,22 @@ describe Crepe::Application do
     expect(app.config).to be_a(Crepe::Application::Configuration)
   end
 
+  it 'yields the configuration in a block' do
+    app.configure do
+      self.arity = 0
+    end
+
+    expect(app.config.arity).to eq(0)
+  end
+
+  it 'yields the configuration in a block with arity' do
+    app.configure do |config|
+      config.arity = 1
+    end
+
+    expect(app.config.arity).to eq(1)
+  end
+
   describe 'initialize!' do
     it 'loads routes and an environment file based on Crepe.env' do
       environment_file = Crepe.root.join('config', 'environments', Crepe.env)
