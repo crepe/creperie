@@ -54,7 +54,7 @@ module Crepe
 
       def run_initializers!
         initializers = Crepe.root.join('config', 'initializers', '*.rb')
-        Dir[initializers].each { |initializer| require initializer }
+        Dir[initializers].sort.each { |initializer| require initializer }
       end
 
       def load_routes!
